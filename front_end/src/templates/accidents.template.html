@@ -1,0 +1,91 @@
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+          
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-hide="!personalDetails.length">
+        <div class="col-md-12">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>
+                  <input ng-click="toggleAll()" ng-model="isAllSelected" type="checkbox" />
+                </th>
+                <th>
+                  Type of light
+                </th>
+                <th>
+                  Severity
+                </th>
+                <th>
+                  Dead
+                </th>
+                <th>
+                  Injured
+                </th>
+                <th>
+                  Modifier
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <input placeholder="filter by light" type="text" ng-model="filter.lumiere" class="form-control">
+                </td>
+                <td>
+                  <input placeholder="filter by severity" type="text" ng-model="filter.indice_gravite" class="form-control">
+                </td>
+                <td>
+                  <input placeholder="filter by Dead" type="text" ng-model="filter.nbr_morts" class="form-control">
+                </td>
+                <td>
+                  <input placeholder="filter by Injured" type="text" ng-model="filter.nbr_blessures" class="form-control">
+                </td>
+                <td>
+                </td>
+              </tr>
+              <tr ng-repeat="personalDetail in personalDetails | filter: {lumiere: filter.lumiere} | filter: {indice_gravite: filter.indice_gravite} | filter: {nbr_morts: filter.nbr_morts} | filter: {nbr_blessures: filter.nbr_blessures}">
+                <td>
+                  <input ng-change="optionToggled()" ng-model="personalDetail.selected" type="checkbox" />
+                </td>
+                <td>
+                  <span ng-show="!personalDetail.isEditable" ng-bind="personalDetail.lumiere"></span>
+                </td>
+                <td>
+                  <span ng-show="!personalDetail.isEditable" ng-bind="personalDetail.indice_gravite"></span>
+                </td>
+                <td>
+                  <span ng-show="!personalDetail.isEditable" ng-bind="personalDetail.nbr_morts"></span>
+                </td>
+                <td>
+                  <span ng-show="!personalDetail.isEditable" ng-bind="personalDetail.nbr_blessures"></span>
+                </td>
+                <td>
+                  <input  class="btn btn-success pull-left" ng-click="openDetails(personalDetail)" type="button" value="Update" ng-show="!personalDetail.isEditable" ng-if="isEditable" />
+                  <input  class="btn btn-success pull-left" ng-click="openDetails(personalDetail)" type="button" value="Details" ng-show="!isEditable"/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="display:  flex; justify-content:  space-evenly; ">
+            <input ng-class="{'disabled': offset<=0}" class="btn btn-success pull-left" ng-click="offset<=0 || nextAccidents(-100)" type="button" value="< Previous 50" />
+            <input ng-class="{'disabled': disableNext}" class="btn btn-success pull-left" ng-click="disableNext || nextAccidents(100)" type="button" value="Next 50 >" />
+          </div>
+          <div class="form-group">
+            <input class="btn btn-danger pull-left" ng-click="deleteAccidents()" type="button" value="Remove" ng-show="isEditable">
+            <input class="btn btn-primary pull-left" ng-click="openEditor()" type="button" ng-show="isEditable" value="Create" />
+            </input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

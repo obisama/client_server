@@ -1,0 +1,49 @@
+<div data-ng-controller="MapsController as vm">
+    <div class="col-md-12 centered">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label" for="textinput">
+                        Adresse :{{vm.raduis1}}
+                    </label>
+                    <div class="col-sm-4">
+                        <input class="form-control" ng-model="vm.addr" placeholder="_" type="text">
+                        
+                    </div>
+                    <label class="col-sm-1 control-label" for="textinput">
+                        Rayon :
+                    </label>
+                    <div class="col-sm-4">
+                        <input class="form-control" ng-model="vm.raduis" placeholder="_" type="text">
+                        
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary" type="submit" ng-click="vm.getlocation()">
+                                Submit
+                      </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-map center="{{vm.center}}" default-style="false" style="display: block;height: calc( 100vh - 172px)" zoom="7">
+        <marker id="custom-marker-{{$index}}" ng-repeat="p in vm.positions track by $index" on-click="vm.map.showInfoWindow('foo', 'custom-marker-'+$index)" position="{{p.pos}}" style="background:blue">
+        </marker>
+        <info-window id="foo" on-mouseover="vm.mouseover()" style="background:blue">
+            <div ng-non-bindable="">
+                Lat: {{anchor.getPosition().lat()}}
+                <br>
+                Lng: {{anchor.getPosition().lng()}}
+                <br>
+                <a href="http://www.google.com">
+                    SeeMore:
+                </a>
+                <br>
+            </div>
+        </info-window>
+        <shape name="circle" ng-repeat="city in vm.circles" no-watcher="true" stroke-color="#FF0000" stroke-opacity="0.8" stroke-weight="2" fill-color="#FF0000" fill-opacity="0.35" center="{{vm.circle.position}}" radius="{{vm.circle.raduis}}">
+    </shape>
+    </ng-map>
+</div>
+<!-- ADD popin here -->

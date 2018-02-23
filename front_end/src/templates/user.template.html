@@ -1,0 +1,68 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="card card-user">
+                    
+                    <div class="content">
+                        <div class="author">
+                          <img class="avatar border-white" src="img/avatar.jpg" alt="..."/>
+                          <h4 class="title">{{username}}<br />
+                             
+                          </h4>
+                        </div>
+                    </div>
+                    <hr>
+                   
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Edit Profile</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>User Type</label>
+                                        <input type="text" class="form-control border-input" disabled placeholder="type" ng-model="user.userType">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control border-input" placeholder="Email" ng-model="user.email" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control border-input" placeholder="Username" ng-model="user.username" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control border-input" placeholder="Put New Password Here" ng-model="user.password" >
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+
+                           
+                            <div class="text-center">
+                                <button type="submit" ng-click="update()" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>

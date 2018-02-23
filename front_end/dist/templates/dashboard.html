@@ -1,0 +1,137 @@
+<div class="row alerts-container" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <uib-alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+  </div>
+</div>
+<div class="row">
+  <!--<div class="col-lg-4 col-md-4 col-xs-12">
+    <rd-widget>
+      <rd-widget-body>
+        <div class="widget-icon green pull-left">
+          <i class="fa fa-plug"></i>
+        </div>
+        <div class="title">80</div>
+        <div class="comment">Online users</div>
+      </rd-widget-body>
+    </rd-widget>
+  </div>-->
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <rd-widget>
+      <rd-widget-body>
+        <div class="widget-icon red pull-left">
+          <i class="fa fa-users"></i>
+        </div>
+        <div class="title">{{users.length}}</div>
+        <div class="comment">All users</div>
+      </rd-widget-body>
+    </rd-widget>
+  </div>
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <rd-widget>
+      <rd-widget-body>
+        <div class="widget-icon orange pull-left">
+          <i class="fa fa-bomb"></i>
+        </div>
+        <div class="title">26560</div>
+        <div class="comment">Accidents</div>
+      </rd-widget-body>
+    </rd-widget>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <rd-widget ng-show="isLoading">
+      <rd-widget-header icon="fa-users fa-spin" title="Loading Users">
+      </rd-widget-header>
+      <rd-widget-body>
+        <rd-loading></rd-loading>
+      </rd-widget-body>
+    </rd-widget>
+    <rd-widget ng-show="!isLoading">
+      <rd-widget-header icon="fa-users" title="Users">
+        <input type="text" ng-model="Dashboard.usernameFilter" placeholder="Filter by username" class="form-control input-sm">
+      </rd-widget-header>
+      <rd-widget-body classes="medium no-padding">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  User Type
+                </th>
+                <th>
+                  Username
+                </th>
+                <th>
+                  Email
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in users | filter: {username: Dashboard.usernameFilter}">
+                <td>
+                  <span ng-bind="user.UserType"></span>
+                </td>
+                <td>
+                  <span ng-bind="user.username"></span>
+                </td>
+                <td>
+                  <span ng-bind="user.email"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </rd-widget-body>
+      <rd-widget>
+  </rd-widget></rd-widget></div>
+  <div class="col-lg-6">
+    <rd-widget>
+      <rd-widget-header icon="fa-bomb" title="Accidents">
+        <input type="text" ng-model="Dashboard.departementFilter" placeholder="Filter by departement" class="form-control input-sm">
+      </rd-widget-header>
+      <rd-widget-body classes="medium no-padding">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  Type of light
+                </th>
+                <th>
+                  Severity
+                </th>
+                <th>
+                  Dead
+                </th>
+                <th>
+                  Injured
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="accident in accidents | filter: {departement: Dashboard.departementFilter}">
+                <td>
+                  <span ng-bind="accident.lumiere"></span>
+                </td>
+                <td>
+                  <span ng-bind="accident.indice_gravite"></span>
+                </td>
+                <td>
+                  <span ng-bind="accident.nbr_morts"></span>
+                </td>
+                <td>
+                  <span ng-bind="accident.nbr_blessures"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </rd-widget-body>
+      <div style="display:  flex; justify-content:  space-evenly">
+          <input ng-class="{'disabled': offset<=0}" class="btn btn-success pull-left" ng-click="offset<=0 || nextAccidents(-100)" type="button" value="< Previous 50">
+          <input ng-class="{'disabled': disableNext}" class="btn btn-success pull-left" ng-click="disableNext || nextAccidents(100)" type="button" value="Next 50 >">
+      </div>
+      <rd-widget>
+  </rd-widget></rd-widget></div>
+</div>
