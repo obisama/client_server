@@ -49,7 +49,7 @@ sur les accidents de la route, chose qui va lui permettre d'éviter les routes d
          1) Il faut accéder au dossier front: "cd ../front"
          2) "npm install"
          3) "bower install"
-         4) "gulp install"
-         6) "gulp build"
-         7) "guilp"
-         8) le serveur sera accessible depuis : http://localhost:8888/
+         4) "gulp build"
+         5) "guilp"
+         6) le serveur sera accessible depuis : http://localhost:8888/
+         
